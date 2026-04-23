@@ -402,6 +402,17 @@ function gameLoop() {
       b.y += b.vy;
       b.life--;
 
+      // Add bullet trail
+      if (Math.random() < 0.3) {
+        particles.push({
+          x: b.x, y: b.y,
+          vx: (Math.random() - 0.5) * 2,
+          vy: (Math.random() - 0.5) * 2,
+          life: 0.5,
+          color: p.getProfile().color.hex || '#00f2ff'
+        });
+      }
+
       if (b.life > 0) {
         let hit = false;
         
@@ -519,13 +530,23 @@ function gameLoop() {
     const pBullets = player.getState('bullets') || [];
 
     pBullets.forEach(b => {
-      ctx.fillStyle = color;
-      ctx.shadowBlur = 10;
+      ctx.save();
+      ctx.shadowBlur = 15;
       ctx.shadowColor = color;
+      
+      // Outer glow
+      ctx.fillStyle = color;
       ctx.beginPath();
-      ctx.arc(b.x + camX, b.y + camY, 4, 0, Math.PI * 2);
+      ctx.arc(b.x + camX, b.y + camY, 6, 0, Math.PI * 2);
       ctx.fill();
-      ctx.shadowBlur = 0;
+      
+      // Inner core
+      ctx.fillStyle = '#fff';
+      ctx.beginPath();
+      ctx.arc(b.x + camX, b.y + camY, 3, 0, Math.PI * 2);
+      ctx.fill();
+      
+      ctx.restore();
     });
 
     if (pos && !dead) {
@@ -632,7 +653,7 @@ function drawMinimap(me) {
   const size = 150;
   const padding = 20;
   const x = canvas.width - size - padding;
-  const y = canvas.height - size - padding;
+  const y = padding + 80; // Move to top right (below header)
 
   // Background
   ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
