@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEON STRIKER | Online Arena</title>
+    <meta name="description" content="無料のオンライン対戦型ネオンアクションゲーム。世界中のプレイヤーと生き残りをかけて戦え。" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="gameCanvas"></canvas>
+      
+      <div id="ui-layer">
+        <header id="game-header">
+          <div class="logo">NEON<span>STRIKER</span></div>
+          <div id="timer" class="hidden">03:00</div>
+          <div id="player-count">WAITING FOR PLAYERS...</div>
+        </header>
+
+        <div id="lobby-screen" class="overlay active">
+          <div class="glass-card">
+            <h1>READY TO <span class="accent">STRIKE?</span></h1>
+            <p>世界中のプレイヤーとリアルタイムで対戦。最後まで生き残り、ネオンの頂点を目指せ。</p>
+            <button id="start-btn" class="premium-btn">
+              <span class="btn-text">JOIN ARENA</span>
+              <span class="btn-glow"></span>
+            </button>
+          </div>
+        </div>
+
+        <div id="results-screen" class="overlay hidden">
+          <div class="glass-card">
+            <h1>ROUND <span class="accent">OVER</span></h1>
+            <div id="final-results" style="margin-top:20px; margin-bottom: 30px; font-size: 1.2rem; text-align: left;"></div>
+            <button id="restart-btn" class="premium-btn">
+              <span class="btn-text">NEXT ROUND</span>
+              <span class="btn-glow"></span>
+            </button>
+          </div>
+        </div>
+
+        <div id="game-info" class="game-ui hidden">
+          <div id="score-board"></div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
