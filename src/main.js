@@ -652,8 +652,8 @@ function drawPlayer(x, y, angle, color, name, isMe, health, powerups) {
 function drawMinimap(me) {
   const size = 150;
   const padding = 20;
-  const x = canvas.width - size - padding;
-  const y = padding + 80; // Move to top right (below header)
+  const x = padding; // Move to top left
+  const y = padding + 80; // Below header
 
   // Background
   ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
